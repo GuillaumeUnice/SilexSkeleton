@@ -1,0 +1,10 @@
+{
+    "require": {
+        "silex/silex": "~1.1",
+		"herrera-io/silex-pdo": "1.0.*@dev"
+    },
+	"autoload": {
+        "psr-4": {"Echyzen\\": "Echyzen/"}
+    }
+	
+}
