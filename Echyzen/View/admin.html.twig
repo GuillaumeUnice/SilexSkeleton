@@ -1,0 +1,14 @@
+{# app/Resources/views/public.html.twig #}
+
+{% extends "::layout.html.twig" %}
+
+{% block menu %}
+	<li><a href="{{ path('echyzen_index_homepage') }}">Accueil</a></li>
+	<li><a href="{{ path('admin_news_index') }}">News</a></li>
+	<li><a href="#">Galerie</a></li>
+	<li><a href="#">Projet</a></li>
+	<li><a href="#">Tuto</a></li>
+	<li><a href="#">Test</a></li>
+	<li><a href="#">Site</a></li>
+	<li><a href="#">forum</a></li>
+{% endblock %}

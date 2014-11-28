@@ -1,10 +1,16 @@
 {
     "require": {
         "silex/silex": "~1.1",
-		"herrera-io/silex-pdo": "1.0.*@dev"
+		"symfony/security": "2.7.*@dev",
+        "twig/twig": ">=1.8,<2.0-dev",
+		"doctrine/dbal": "~2.4",
+        "symfony/twig-bridge": "~2.6"
     },
 	"autoload": {
-        "psr-4": {"Echyzen\\": "Echyzen/"}
+        "psr-4": {
+        	"Echyzen\\": "Echyzen/",
+        	"App\\": "app/"
+    	}
     }
 	
 }

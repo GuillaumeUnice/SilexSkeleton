@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}Echyzen - Portfolio{% endblock %}</title>
+		<meta name="description" content="portofolio, Tutoriels/astuces et galerie 3D/2D!!!" />
+		<meta name="keywords" content="portofolio, galerie, infographie, informatique, programmation, zbrush, blender, html, css, php, ..." />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		{% block stylesheet %}
+			<link rel="stylesheet" media="screen" type="text/css" title="Design" href="{{ asset('css/design.css') }}" />
+			<link rel="shortcut icon" href="{{ asset('css/favicon.ico') }}" >
+			<!-- Icon Apple touch -->
+			<link rel="apple-touch-icon" href= "{{ asset('css/icon_apple.png') }}" />
+			<!-- Icon Windows 8 -->
+			<meta name="application-name" content="Echyzen Portofolio's"/> 
+			<meta name="msapplication-TileColor" content="#58595B" /> 
+			<meta name="msapplication-TileImage" content="{{ asset('css/icon_microsoft.png') }}" />
+		{% endblock %}
+	</head>
+
+
+			
+	<body>
+	<div id="header_bandeau">
+		<header>
+		</header>
+	</div>
+<div id="test">
+<nav>
+	<div id="signature">
+	</div>
+			
+	<div id="barreMenu">
+
+			<a href="/news.php" class="elementMenu">News</a>
+			<a href="/galerie/galerie.php" class="elementMenu">Galerie</a>
+			<a href="/projets/projet.php" class="elementMenu">Projet</a>
+			<a href="/tests/test.php" class="elementMenu">Test</a>
+			<a href="/tutos/tuto.php" class="elementMenu">Tuto</a>
+			<a href="/site/site.php" class="elementMenu">Site</a>
+			<a href="/forum/forum.php" class="elementMenu">Forum</a>
+			<!--<a href="http://www.youtube.com/user/EchyzenChannel" title="La chaine YouTube du Portofolio" target="_blank"><div class="logo1"></div></a>
+			<a href="https://vimeo.com/channels/echyzen" title="La chaîne Vimeo du Portofolio" target="_blank"><div class="logo2"></div></a>
+	-->
+	</div>
+</nav>
+</div>
+
+{#
+<nav>
+
+			
+	<div id="barreMenu">
+		<div id="signature">
+	</div>
+		<div>
+			<a href="/news.php" class="elementMenu">News</a>
+			<a href="/galerie/galerie.php" class="elementMenu">Galerie</a>
+			<a href="/projets/projet.php" class="elementMenu">Projet</a>
+			<a href="/tests/test.php" class="elementMenu">Test</a>
+			<a href="/tutos/tuto.php" class="elementMenu">Tuto</a>
+			<a href="/site/site.php" class="elementMenu">Site</a>
+			<a href="/forum/forum.php" class="elementMenu">Forum</a>
+			<a href="http://www.youtube.com/user/EchyzenChannel" title="La chaine YouTube du Portofolio" target="_blank"><div class="logo1"></div></a>
+			<a href="https://vimeo.com/channels/echyzen" title="La chaîne Vimeo du Portofolio" target="_blank"><div class="logo2"></div></a>
+		</div>
+	</div>
+</nav>
+#}
+
+		<div id="corps">
+			{% block body %}
+			{% endblock %}
+		</div>
+		<footer> 
+			<div id="cadre_footer">
+				<div id="rond1"><img src="/css/images/rond1.png" alt="un rond" /></div>
+				<div id="rond2"><img src="/css/images/rond1.png" alt="un rond" /></div>
+				<div id="rond3"><img src="/css/images/rond3.png" alt="un rond" /></div>
+				<div id="rond4"><img src="/css/images/rond3.png" alt="un rond" /></div>
+				<div id="rond5"><img src="/css/images/rond2.png" alt="un rond" /></div>
+				<div id="rond6"><img src="/css/images/rond1.png" alt="un rond" /></div>
+				<p>
+					Copyright © 2012 - {{ "now"|date('Y') }} - Echyzen - Tous droits réservés <br />
+					Version 0.2.1<br />
+				</p> 
+			</div>
+		</footer>	
+		
+		{% block javascripts %}
+			<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+			<script src="{{ asset('/js/design_effect.js') }}" type="text/javascript" ></script>
+		{% endblock %}
+	</body>
+</html>
