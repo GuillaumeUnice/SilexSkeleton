@@ -1,104 +1,35 @@
 <?php
  namespace Echyzen\Model;
-
-use Symfony\Component\Security\Core\User\UserInterface;
-
+use Echyzen;
+use App\AppEchyzen;
+use Echyzen\Entity\UserEntity;
+use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 /**
  * Adds PDO methods to the application.
  *
  */
-class UserModel extends DataBase implements UserInterface
+class UserModel extends \Echyzen\BaseModel
 {
-	private $username;
-    private $password;
-    private $salt;
-    private $roles;
-    private $dateInscription;
-    private $birthday;
-    private $website;
 
-    public function __construct($username, $password, $salt, array $roles, $dateInscription, $birthday, $website)
-    {
-        $this->username = $username;
-        $this->password = $password;
-        $this->salt = $salt;
-        $this->roles = $roles;
-		$this->dateInscription = $dateInscription;
-		$this->birthday = $birthday;
-		$this->website = $website;
+    /**
+    *   Return 1 if unsername already exist else 0
+    */
+    private function isUsername($username) {
+        
+        $req = $this->db->prepare('SELECT COUNT(*) FROM users WHERE username = :username');
+        $req->execute(array(
+            'username' => $username
+            ));
+        return ($req->fetchColumn(0));
+        
     }
 
-    public function getDateInscription()
-    {
-        return $this->dateInscription;
-    }
-
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    public function getBirthDay()
-    {
-        return $this->birthday;
-    }
-
-    public function getRoles()
-    {
-        return $this->roles;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function equals(UserInterface $user)
-    {
-        if (!$user instanceof UserModel) {
-            return false;
-        }
-
-        if ($this->password !== $user->getPassword()) {
-            return false;
-        }
-
-        if ($this->getSalt() !== $user->getSalt()) {
-            return false;
-        }
-
-        if ($this->username !== $user->getUsername()) {
-            return false;
-        }
-
-
-        if ($this->dateInscription !== $user->getDateInscription()) {
-            return false;
-        }
-
-
-        if ($this->birthDay !== $user->getBirthDay()) {
-            return false;
-        }
-
-
-        if ($this->website !== $user->getWebsite()) {
-            return false;
-        }
-        return true;
+    public function addUser(UserEntity $u) {
+        $req = $this->db->prepare('INSERT INTO users(username, password, roles) VALUES(:username, :password, :roles)');
+            $req->execute(array(
+                'username' => $u->getUsername(),
+                'password' => $u->getPassword(),
+                'roles' => $u->getRoles()
+            ));
     }
 }

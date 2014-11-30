@@ -5,9 +5,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
-use Echyzen\Model\UserModel;
-use Echyzen\Entity\UserEntity;
-use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;  
+
+  
 /**
 * The routes used for index
 *
@@ -48,8 +47,8 @@ class IndexController implements ControllerProviderInterface
 			'/admin',
 			 'Echyzen\Controller\IndexController::adminAction'
 		 );     
-		$factory->post(
-			'/connexion',
+		$factory->get(
+			'/c',
 			 'Echyzen\Controller\IndexController::connexionAction'
 		 );     
 		 
@@ -71,10 +70,6 @@ class IndexController implements ControllerProviderInterface
 	 }
 	 
 	 public function testAction(Application $app) {
-	/*	$u = new UserEntity('Paul', $app['security.encoder.digest']->encodePassword('a', ''), null, array('ROLE_USER'), null, null, null);
-		$uM = new UserModel($app);
-	 	$uM->addUser($u);*/
-
 		return 'Page test';
 	 	
 	 }
@@ -87,11 +82,6 @@ class IndexController implements ControllerProviderInterface
 	 		'roles' => 'ROLE_USER'
 	 		));
 	 	return $app['twig']->render('layout.html.twig');*/
-		/*$u = new UserEntity('Pierre', $app['security.encoder.digest']->encodePassword('a', ''), null, array('ROLE_USER'), null, null, null);
-		$uM = new UserModel($app);
-	 	$uM->addUser($u);*/
-
-	 	$userRep = $app['repository']->getModel('UserModel');
 
 	 	  return $app['twig']->render('index.twig', array(
 	        'error' => $app['security.last_error']($r),
