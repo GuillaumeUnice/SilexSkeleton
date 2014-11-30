@@ -1,0 +1,111 @@
+Préambule :
+
+Connaître les bases du langage PHP. Si vous êtes un débutant PHP complet, commencez par vous familiariser avec ce langage.
+
+
+Disposer d'une machine de développement incluant le serveur Web Apache.
+
+
+
+Vous utiliser PHP depuis quelques temps et avez marrz qu'a chaque nouveau projet remettre toute à plat recommencer un MVC car le précédant est devenu trop complexe?
+Vous souhaiter passer la vitesse supérieur mais vous vous heurter à des framework composé de dizaine de Mo incomprhéensible pour développeur PHP Orienté Objet débutant.
+
+La solution le micro-framework!:alheluha
+Et pas n'importe lequel Silex unn bon retour au base du framework (nous assisté pas nous submergé) avec une rapidité incomparable ci ce n'est quelques autre microframework comme Silm ou Limonade.
+Cependant, sa plus grande force c'est votre marge de progression en effet, Silex est le petit frère de Symfony2 et a ce titre vous disposer du noyau de Symfony est donc la possibilité d'intégré toutes les extensions Symfony qui vous plais et de balayer les autres le rêve.
+Vous avez même la possibilité de choisir ou non un ORM selon l'équipe avec qui vous êtes.
+
+Bref, débutant, semi-proffessionnel et proffesionnel entrer dans le manifique monde de Silex le seul micro-framework qui vous promet une évolution à la pointe de PHP.
+
+
+
+Dans ce tutoriel nous aborderons plusieurs points en omettant l'utilisation d'un ORM (notamment Doctrine2) pour des raisons d'universalité(cependant il vous sera tout à fais facile de l'incorporer)
+
+III) parties :
+
+-Installation (Silex, Composer...)
+-Mise en place d'un squletton MVC
+-Cas pratique (simple blog)
+
+
+I)Installation :
+	Chapitre1 : Pré-Requis
+Nous vous conseillons d'avoir une version PHP >= 5.4.x en effet les autres ne sont plus du tout supporté et il nous faut au moins les dernieres avancées PHP (namespace, trait).
+L'objectif de ce tutoriel est de développer un skeleton(=architecture Orienté Objet minimale) pour pouvoir créer vos propres application.
+Ce n'est pas a proprement parler de concevoir de AàZ un framework mais plutôt de savoir en utiliser un Silex de SensioLabs qui vous sera plus que bénéfique si vous commencé étant donnée qu'il est le petit frère de Symfony2
+
+Le tutoriel s'efforcera d'être autocritique en présentant les éventuelles problèmes qu'il peu être confronter selon l'application...
+
+Micro-Framework kezaco!
+Framework siginifie cadre de travail c'est donc un outil qui vous assiste dans votre travail de concepteur oui seul les concepteur peuve assister les concepteur donc on (nous la communauté Geek :D) nos propres outils d'assistance.
+Ici, nous avons le préfixe "Micro" ceci signifie qui fournit vraiment un minimum pour plus de liberté mais qui dit liberté dit attention il faut pas faire n'importe quoi on se doit de respecter autant que faire ce peu les normes d'où ce tutoriel(ou je me vends là XD).
+
+Non, concretement un Micro-Framework classique PHP propose juste un système de routage(le petit bidule qui permet de rediriger sur la bonne méthode vos URL!). Silex lui est légèrement plus ambitieux il utiliser pas mal de module hérité de son grand frère et propose un système de service et de controller nativement.
+C'est ceci qui donne à Silex une autre dimension dans le monde des micro-framework. Pour en revenir une dernière fois sur Symfony2, avec Silex vous apprhéender le paradigme Symfony c'est une porte d'entrée sans pour autant y être vraiment... mais cette oppotunité et très importante car Zend & Symfony (un peu Laravel & Cake) sont les frameworks contemporain les plus utilisé dans le monde. Symfony offre une oppurtinité d'emploie sur la France métropolitaine du moins.
+Et oui disons le Kokoroco! Sensio Labs c'est français est donc Symfony & Silex aussi... Ah la French Touch!!! 
+Fabien Potencier est l'instigateur de c'est deux merveille.
+
+Allez trèves de bavardage regardons les outils a installer.
+Il vous est fortement conseiller d'installer Composer
+
+
+II) Adopter une bonne structure!
+
+Adopter une structure maintenable est une question évidement primordiale. Les applications ne dispose pas de tous les patterns d'un langage de programmation classique ceux dû au propriété web eux même.
+Je vais vous proposer une structure de données je en prétend pas quels soit la meilleure (certainement pas d'ailleurs) mais elle se rapproche un peu de Symfony sans l'être.
+Alors, il vous est totalement possible d'adopter une structure en Bundle avec fichier de config pour le routage pour coller totalement avec Symfony mais après réflexion sans ORM (condition posé dès le début) je ne trouve pas un très grand interêts.
+Voilà ce que je vous propose :
+/ App
+/ Src
+/ tests
+/ vendor
+/ Web
+
+Dans le web il y aura tous simplement notre index.php lancera l’application car à chaque requête du client cela passera par ce fichier.
+
+Le vendor c’est l’ensemble des « bibliothèques » que l’on aura installer via Composer à chaque « composer install » il recherchera sur le net les bon packet est les mettra dans le vendor ainsi pour utiliser les services d’autres développera on ne souciera plus que d’importer et d’étendre les objets déjà fournit.
+
+Tests nous le verrons à la fin cela permettra de tester notre porpre code en utilisant PHPUnit.
+
+Src c’est le cœur de notre application MVC lui-même composé de 3 répertoires :
+-Model (traitement de la base de données)
+-View (interface utilisateur : ensemble des pages .html ou plutôt .twig pour nous car le template twig est plus qu’interressant)
+-Controller (logique de contrôle, gestion des événements, synchronisation en d’autres termes une fois notre application paramêtré ce sera votre lieu de travail :D)
+
+App c’est l’ensemble des configurations et services créer par nos soins dont l’application à besoin pour tourner. Avec qui plus est MyApp.php qui sera une classe étendant de la classe Apllication  fournit par silex indispensable pour le micro-framework. Le répertoire App ce présente comme ceci :
+\MyApp.php
+\Service : tous les services nous verrons dans un chapitre prochain
+\Config : ce sera juste pour stocker des variables de config (connexion base de données, compte réseaux sociaux, API…). J’ai choisit la forme XML mais rien ne vous empêche d’utiliser YAML (très utiliser par la communauté symfony ou même du JSON. Si vous avez jamais fais de XML je vous conseil de ne pas l’utiliser car très verbeux mais comme je les souvent utilisé je vais continuer.
+
+Voilà, vous savez tous « y a plus cas ».
+
+Pour la suite je vous propose mon implémentation bien sûr vous pouvez l’adapter… Je vous direz quand ma solution est boiteuse ou pas histoire de ne pas vous laiser toucher à tous tous.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Première chose Mise en place de nos propres namespace et de son autoload via devinez qui ? Composer oui il permet de faire cela extrèment rapidement.
+
+
+
+
