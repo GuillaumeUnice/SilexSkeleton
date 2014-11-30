@@ -1,0 +1,49 @@
+/* General styles for all menus */
+#top_menu {
+	background: rgb(60, 60, 60);
+	position: fixed;
+	border-bottom: 4px solid #47a3da;
+	
+	/* animation transition*/
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+	
+	
+		width: 100%;
+	height: 50%;/*150px;*/
+	left: 0;
+	z-index: 1;
+	overflow: scroll;
+	overflow-x: hidden;
+	
+}
+
+
+
+/* css in interaction with jquery */
+.cbp-spmenu-top {
+	top: -50%;/*-150px;*/
+}
+
+.cbp-spmenu-top.cbp-spmenu-open {
+	top: 0px;
+}
+
+
+/* Example media queries */
+
+@media screen and (max-width: 55.1875em){
+
+	#top_menu  {
+		font-size: 75%;
+		height: 110px;
+	}
+
+	.cbp-spmenu-top {
+		top: -110px;
+	}
+
+
+
+}

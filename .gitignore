@@ -1,0 +1,6 @@
+vendor/
+brouillon/
+composer.phar
+composer.lock
+example/assetic/output/*
+example/assetic/cache/*

@@ -91,13 +91,14 @@ class IndexController implements ControllerProviderInterface
 		$uM = new UserModel($app);
 	 	$uM->addUser($u);*/
 
-	 	$userRep = $app['repository']->getModel('UserModel');
+/*	 	$userRep = $app['repository']->getModel('UserModel');
 
 	 	  return $app['twig']->render('index.twig', array(
 	        'error' => $app['security.last_error']($r),
 	        'last_username' => $app['session']->get('_security.last_username'),
 	        'r' => 'lil'
-	    ));
+	    ));*/
+			 	  return $app['twig']->render('public.html.twig', array());
 	 }
 
 }
